@@ -1,0 +1,30 @@
+body {
+	background-color:gray
+}
+.container {
+  width: 480px;
+  height: 480px;
+  background-color: #faebd7;
+  border: 2px solid black;
+  border-radius: 5% 0 5% 0%
+}
+.container .squares:nth-child(-n+4) {
+background-image:url("./img/icons.png");
+  background-color: aquamarine;
+            color: #ff0000;
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 1px solid black;
+            border-radius: 10%;
+            cursor: pointer;
+            margin-left: 10px;
+            position: relative;
+            
+            /* Background positioning */
+            background-position: center 55px;
+            background-repeat: no-repeat;
+            background-size: 90px 90px;
+            box-sizing: border-box;
+}
