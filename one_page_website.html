@@ -28,20 +28,25 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        table {
+        /* table {
             width: 100%;
             border-collapse: collapse;
         }
         table, th, td {
-            border: 1px solid black;
+            border: none;
         }
         th, td {
             padding: 10px;
             text-align: center;
-        }
-        img {
+        } */
+         .image-container{
+            display: inline-flexbox;
+         }
+        .image {
             width: 100%;
             height: auto;
+            object-fit: cover;
+           
         }
         iframe {
             width: 100%;
@@ -81,7 +86,16 @@
     <section id="imge-section">
         <h2> Images </h2>
         <p>This is the image section of the one-page website.</p>
-        <Table>
+       <div class="image-container">
+        <div class="image"><img src="./img/img1.jpeg" alt="Placeholder Image 1"></div>
+
+         <div class="image">    <img src="./img/img2.jpeg" alt="Placeholder Image 2"></div>
+         <div class="image"><img src="./img/img3.jpeg" alt="Placeholder Image 3"></div>
+         <div class="image"><img src="" alt=""></div>
+
+
+        </div>
+        <!-- <Table>
             <tr>
                 <td><img src="./img/img1.jpeg" alt="Placeholder Image 1"></td>
                 <td><img src="./img/img2.jpeg" alt="Placeholder Image 2"></td>
@@ -92,7 +106,7 @@
                 <td><img src="./img/img5.jpeg" alt="Placeholder Image 5"></td>
                 <td><img src="./img/img6.jpeg" alt="Placeholder Image 6"></td>
             </tr>
-        </Table>
+        </Table> -->
     </section>
 
     <section id="video-section">

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System Animation</title>
+    <style>
+        /*
+         * Main container for the solar system.
+         * Sets up a flexbox layout to center the animation on the page.
+         */
+          body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at center, #0a0e2a 0%, #000000 70%);
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+                h1 {
+           position: absolute;
+            margin-bottom: 10px;
+            color: #ffd700;
+            font-size: 1.5rem;
+            text-align: center;
+            top: 10px;
+            width: 100%
+                }
+        }
+        
+        /* h1 {
+            position: absolute;
+            top: 20px;
+            color: #ffd700;
+            font-size: 1.5rem;
+            text-align: center;
+            width: 100%;
+        } */
+
+        /* The main viewport for the planets */
+        .solar-system {
+            position: relative;
+            width: 40em;
+            height: 40em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* The Sun, positioned at the center of the solar system */
+        .sun {
+            position: absolute;
+            width: 14em;
+            height: 14em;
+            background: url("/img/sun.gif") center/cover;
+            border-radius: 50%;
+            z-index: 2;
+            animation: sun-pulse 4s infinite alternate, sun-rotation 240s linear infinite; /* Much slower rotation */
+        }
+        
+        /* The Sun's glow effect */
+        .sun::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /*
+         * Earth's orbit container. This element rotates to simulate the orbit.
+         * The Earth itself is positioned at a fixed distance from the center.
+         */
+        .earth-orbit {
+            position: absolute;
+            width: 36em;      /* Increased orbit radius */
+            height: 36em;
+            border-radius: 50%;
+            animation: earth-orbit-animation 36.5s linear infinite;
+        }
+        
+        /* The Earth planet itself - smaller */
+        .earth {
+            position: relative;
+            width: 2em;       /* Smaller Earth */
+            height: 2em;
+            background: url("/img/earth.png") center/cover;
+            border-radius: 50%;
+            top: 7em;         /* Adjusted to match new orbit size */
+            left: 7em;
+            animation: spin 2s linear infinite;
+        }
+
+        /*
+         * Moon's orbit container. Nested within the Earth, this rotates to simulate the moon's orbit.
+         * The Moon is positioned at a fixed distance from the Earth's center.
+         */
+        .moon-orbit {
+            position: absolute;
+            width: 5em;      /* Reduced moon orbit radius for more realistic distance */
+            height: 5em;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: moon-orbit-animation 100s linear infinite;
+        }
+
+        /* The Moon planet itself - smaller */
+        .moon {
+            position: absolute;
+            width: 0.7em;     /* Smaller Moon */
+            height: 0.7em;
+            background: url("/img/moon.png") center/cover;
+            border-radius: 50%;
+            top: -0.35em;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: spin 100s linear infinite;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+     .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+
+        /*
+         * Keyframe animations for orbits and self-rotation.
+         * Note: The `orbit` animation simply rotates the container.
+         * The planet's position is fixed relative to its rotating parent.
+         */
+        /* @keyframes sun-pulse {
+            0% {
+                box-shadow: 0 0 30px 30px rgba(255, 215, 0, 0.8),
+                            0 0 40px 40px rgba(251, 197, 36, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 100px 100px rgba(255, 215, 0, 0.9),
+                            0 0 200px 200px rgba(251, 197, 36, 0.7);
+            } 
+            100% {
+                box-shadow: 0 0 40px 40px rgba(255, 215, 0, 0.9),
+                            0 0 60px 60px rgba(251, 197, 36, 0.7);
+            }
+        } */
+        
+        @keyframes sun-rotation {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes earth-orbit-animation {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes moon-orbit-animation {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+            @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Solar System Animation</h1>
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="earth-orbit">
+            <div class="earth">
+                <div class="moon-orbit">
+                    <div class="moon"></div>
+                </div>
+                    <div class="stars-container">
+                        <div class="stars" id="stars"></div>
+                    </div>
+
+                
+            </div>
+        </div>
+    </div>
+    <script>
+          function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            // Random position
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            
+            // Random size (very small for stars)
+            const size = Math.random() * 2 + 0.5;
+            
+            // Random animation duration for variety
+            const duration = Math.random() * 5 + 3;
+            
+            // Apply styles
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.animationDuration = `${duration}s`;
+            
+            return star;
+        }
+
+        function generateStars() {
+            const container = document.querySelector('.stars-container');
+            const numStars = 500;
+            
+            // Clear existing stars
+            container.innerHTML = '';
+            
+            for (let i = 0; i < numStars; i++) {
+                container.appendChild(createStar());
+            }
+        }
+
+        // Generate stars on load and when window is resized
+        window.addEventListener('load', generateStars);
+        window.addEventListener('resize', generateStars);
+    </script>
+</body>
+</html>

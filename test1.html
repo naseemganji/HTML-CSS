@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure CSS Starry Loading Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0a0a1a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        #pre-load {
+            background: #000;
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        /* Starry background using multiple radial gradients */
+        #pre-load::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(2px 2px at 10% 20%, #fff, transparent),
+                radial-gradient(2px 2px at 20% 40%, #fff, transparent),
+                radial-gradient(2px 2px at 30% 60%, #fff, transparent),
+                radial-gradient(2px 2px at 40% 80%, #fff, transparent),
+                radial-gradient(2px 2px at 50% 10%, #fff, transparent),
+                radial-gradient(2px 2px at 60% 30%, #fff, transparent),
+                radial-gradient(2px 2px at 70% 50%, #fff, transparent),
+                radial-gradient(2px 2px at 80% 70%, #fff, transparent),
+                radial-gradient(2px 2px at 90% 90%, #fff, transparent),
+                radial-gradient(2px 2px at 15% 15%, #fff, transparent),
+                radial-gradient(2px 2px at 25% 35%, #fff, transparent),
+                radial-gradient(2px 2px at 35% 55%, #fff, transparent),
+                radial-gradient(2px 2px at 45% 75%, #fff, transparent),
+                radial-gradient(2px 2px at 55% 15%, #fff, transparent),
+                radial-gradient(2px 2px at 65% 35%, #fff, transparent),
+                radial-gradient(2px 2px at 75% 55%, #fff, transparent),
+                radial-gradient(2px 2px at 85% 75%, #fff, transparent),
+                radial-gradient(2px 2px at 95% 95%, #fff, transparent),
+                radial-gradient(2px 2px at 5% 25%, #fff, transparent),
+                radial-gradient(2px 1px at 15% 45%, #fff, transparent),
+                radial-gradient(1px 1px at 25% 65%, #fff, transparent),
+                radial-gradient(1px 1px at 35% 85%, #fff, transparent),
+                radial-gradient(1px 1px at 45% 5%, #fff, transparent),
+                radial-gradient(8px 8px at 55% 25%, #fff, transparent),
+                radial-gradient(1px 1px at 65% 45%, #fff, transparent),
+                radial-gradient(1px 1px at 75% 65%, #fff, transparent),
+                radial-gradient(1px 1px at 85% 85%, #fff, transparent),
+                radial-gradient(1px 1px at 95% 5%, #fff, transparent),
+                radial-gradient(1px 1px at 10% 70%, #fff, transparent),
+                radial-gradient(4px 4px at 20% 90%, #fff, transparent),
+                radial-gradient(4px 4px at 30% 10%, #fff, transparent),
+                radial-gradient(4px 4px at 40% 30%, #fff, transparent),
+                radial-gradient(4px 4px at 50% 50%, #fff, transparent),
+                radial-gradient(4px 4px at 60% 70%, #fff, transparent),
+                radial-gradient(4px 4px at 70% 90%, #fff, transparent),
+                radial-gradient(10px 4px at 80% 10%, #fff, transparent),
+                radial-gradient(4px 4px at 90% 30%, #fff, transparent),
+                radial-gradient(4px 4px at 5% 50%, #fff, transparent),
+                radial-gradient(4px 4px at 15% 70%, #fff, transparent),
+                radial-gradient(1px 1px at 25% 90%, #fff, transparent),
+                radial-gradient(1px 1px at 35% 10%, #fff, transparent),
+                radial-gradient(1px 1px at 45% 30%, #fff, transparent),
+                radial-gradient(1px 1px at 55% 50%, #fff, transparent),
+                radial-gradient(1px 1px at 65% 70%, #fff, transparent),
+                radial-gradient(6px 6px at 75% 90%, #fff, transparent),
+                radial-gradient(1px 1px at 85% 10%, #fff, transparent),
+                radial-gradient(9px 9px at 95% 30%, #fff, transparent);
+            background-size: 100% 100%;
+            animation: starTwinkle 4s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Loader styles */
+        #pre-load .loader-inner {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        
+        #pre-load .loader-inner .box {
+            position: absolute;
+            background: linear-gradient(0deg, rgba(50,50,50,0.8) 0%, rgba(100,100,100,0.8) 100%);
+            border-radius: 50%;
+            border: 1px solid rgb(100,100,100);
+            box-shadow: rgba(0,0,0,0.3) 0 10px 10px 0;
+            backdrop-filter: blur(5px);
+            animation: ripple 2s infinite ease-in-out;
+        }
+        
+        #pre-load .loader-inner .box:nth-child(1) {
+            width: 20%;
+            height: 20%;
+            z-index: 99;
+            animation-delay: 0s;
+        }
+        
+        #pre-load .loader-inner .box:nth-child(2) {
+            width: 40%;
+            height: 40%;
+            z-index: 98;
+            border-color: rgba(100,100,100,0.8);
+            animation-delay: 0.4s;
+        }
+        
+        #pre-load .loader-inner .box:nth-child(3) {
+            width: 60%;
+            height: 60%;
+            z-index: 97;
+            border-color: rgba(100,100,100,0.6);
+            animation-delay: 0.8s;
+        }
+        
+        #pre-load .loader-inner .box:nth-child(4) {
+            width: 80%;
+            height: 80%;
+            z-index: 96;
+            border-color: rgba(100,100,100,0.4);
+            animation-delay: 1.2s;
+        }
+        
+        #pre-load .loader-inner .box:nth-child(5) {
+            width: 100%;
+            height: 100%;
+            z-index: 95;
+            border-color: rgba(100,100,100,0.2);
+            animation-delay: 1.6s;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+                box-shadow: rgba(0,0,0,0.3) 0 10px 10px 0;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+                box-shadow: rgba(0,0,0,0.3) 0 30px 20px 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.7;
+                box-shadow: rgba(0,0,0,0.3) 0 10px 10px 0;
+            }
+        }
+        
+        /* Loading text */
+        .loading-text {
+            position: absolute;
+            bottom: 100px;
+            color: #fff;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            z-index: 10;
+            font-family: Arial, sans-serif;
+        }
+        
+        .loading-dots {
+            display: inline-block;
+            width: 20px;
+            text-align: left;
+        }
+        
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="pre-load" class="loader">
+        <!-- Loader -->
+        <div class="loader-inner">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        
+        <!-- Loading text -->
+        <div class="loading-text">
+            Loading<span class="loading-dots"></span>
+        </div>
+    </div>
+</body>
+</html>
