@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Display Properties Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .intro {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-right: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-content {
+            flex: 3;
+            min-width: 300px;
+        }
+        
+        h2 {
+            color: #4a00e0;
+            margin: 20px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        h3 {
+            color: #8e2de2;
+            margin: 15px 0 10px;
+        }
+        
+        .display-types {
+            list-style: none;
+        }
+        
+        .display-types li {
+            margin: 10px 0;
+            padding: 12px 15px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .display-types li:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .display-types li.active {
+            background: #e0e7ff;
+            border-left: 4px solid #4a00e0;
+            font-weight: bold;
+        }
+        
+        .example-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .visual-example {
+            border: 2px dashed #ccc;
+            padding: 15px;
+            margin: 15px 0;
+            min-height: 150px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .element {
+            background: #4a00e0;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .block-element {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .inline-element {
+            display: inline;
+            padding: 5px 10px;
+            margin: 2px;
+        }
+        
+        .inline-block-element {
+            display: inline-block;
+            width: 100px;
+            margin: 5px;
+        }
+        
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-around;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .none-element {
+            display: none;
+        }
+        
+        .table {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table-row {
+            display: table-row;
+        }
+        
+        .table-cell {
+            display: table-cell;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        .explanation {
+            background: #e0e7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #4a00e0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSS Display Properties Guide</h1>
+            <p class="intro">Understand how different display values affect element layout with interactive examples</p>
+        </header>
+        
+        <div class="content">
+            <div class="sidebar">
+                <h2>Display Values</h2>
+                <ul class="display-types">
+                    <li class="active" onclick="showExample('block')">block</li>
+                    <li onclick="showExample('inline')">inline</li>
+                    <li onclick="showExample('inline-block')">inline-block</li>
+                    <li onclick="showExample('flex')">flex</li>
+                    <li onclick="showExample('grid')">grid</li>
+                    <li onclick="showExample('none')">none</li>
+                    <li onclick="showExample('table')">table</li>
+                    <li onclick="showExample('inline-flex')">inline-flex</li>
+                    <li onclick="showExample('inline-grid')">inline-grid</li>
+                </ul>
+                
+                <div class="explanation">
+                    <h3>What is the Display Property?</h3>
+                    <p>The CSS <strong>display</strong> property specifies the display behavior of an element. It defines how an element is rendered in the document flow.</p>
+                    <p>Every HTML element has a default display value depending on its type.</p>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <div id="block" class="example-container">
+                    <h2>display: block</h2>
+                    <div class="code-example">
+                        selector { display: block; }
+                    </div>
+                    <div class="explanation">
+                        <p><strong>Block-level elements</strong> start on a new line and take up the full width available. They can have margins, padding, width, and height set.</p>
+                        <p><strong>Examples:</strong> &lt;div&gt;, &lt;p&gt;, &lt;h1&gt;-&lt;h6&gt;, &lt;section&gt;, &lt;article&gt;</p>
+                    </div>
+                    <div class="visual-example">
+                        <div class="element block-element">Block Element 1</div>
+                        <div class="element block-element">Block Element 2</div>
+                        <div class="element block-element">Block Element 3</div>
+                    </div>
+                </div>
+                
+                <div id="inline" class="example-container" style="display:none">
+                    <h2>display: inline</h2>
+                    <div class="code-example">
+                        selector { display: inline; }
+                    </div>
+                    <div class="explanation">
+                        <p><strong>Inline elements</strong> do not start on a new line and only take up as much width as necessary. They cannot have width or height set, and top/bottom margins/padding don't affect other elements.</p>
+                        <p><strong>Examples:</strong> &lt;span&gt;, &lt;a&gt;, &lt;strong&gt;, &lt;em&gt;</p>
+                    </div>
+                    <div class="visual-example">
+                        <span class="element inline-element">Inline Element 1</span>
+                        <span class="element inline-element">Inline Element 2</span>
+                        <span class="element inline-element">Inline Element 3</span>
+                        <p>Notice how these inline elements flow with the text and don't break onto new lines.</p>
+                    </div>
+                </div>
+                
+                <div id="inline-block" class="example-container" style="display:none">
+                    <h2>display: inline-block</h2>
+                    <div class="code-example">
+                        selector { display: inline-block; }
+                    </div>
+                    <div class="explanation">
+                        <p><strong>Inline-block elements</strong> are similar to inline elements but can have width, height, margins, and padding set. They flow with text and other inline elements but behave like blocks in terms of styling.</p>
+                    </div>
+                    <div class="visual-example">
+                        <div class="element inline-block-element">Inline-Block 1</div>
+                        <div class="element inline-block-element">Inline-Block 2</div>
+                        <div class="element inline-block-element">Inline-Block 3</div>
+                        <p>These elements flow inline but can have specific dimensions set.</p>
+                    </div>
+                </div>
+                
+                <div id="flex" class="example-container" style="display:none">
+                    <h2>display: flex</h2>
+                    <div class="code-example">
+                        selector { display: flex; }
+                    </div>
+                    <div class="explanation">
+                        <p><strong>Flexbox</strong> is a one-dimensional layout method for arranging items in rows or columns. Items flex to fill additional space or shrink to fit into smaller spaces.</p>
+                    </div>
+                    <div class="visual-example flex-container">
+                        <div class="element">Flex Item 1</div>
+                        <div class="element">Flex Item 2</div>
+                        <div class="element">Flex Item 3</div>
+                        <div class="element">Flex Item 4</div>
+                        <div class="element">Flex Item 5</div>
+                    </div>
+                </div>
+                
+                <div id="grid" class="example-container" style="display:none">
+                    <h2>display: grid</h2>
+                    <div class="code-example">
+                        selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+                    </div>
+                    <div class="explanation">
+                        <p><strong>CSS Grid</strong> is a two-dimensional layout system that handles both rows and columns. It's perfect for complex layouts that need precise control over both dimensions.</p>
+                    </div>
+                    <div class="visual-example grid-container">
+                        <div class="element">Grid Item 1</div>
+                        <div class="element">Grid Item 2</div>
+                        <div class="element">Grid Item 3</div>
+                        <div class="element">Grid Item 4</div>
+                        <div class="element">Grid Item 5</div>
+                        <div class="element">Grid Item 6</div>
+                    </div>
+                </div>
+                
+                <div id="none" class="example-container" style="display:none">
+                    <h2>display: none</h2>
+                    <div class="code-example">
+                        selector { display: none; }
+                    </div>
+                    <div class="explanation">
+                        <p>The element is <strong>completely removed</strong> from the document flow. It doesn't take up any space and is not rendered.</p>
+                        <p>This is different from <strong>visibility: hidden</strong> which hides the element but reserves its space in the layout.</p>
+                    </div>
+                    <div class="visual-example">
+                        <div class="element">Visible Element</div>
+                        <div class="element none-element">This element has display: none</div>
+                        <div class="element">Another Visible Element</div>
+                        <p>Notice there's no gap where the hidden element would be - it's completely removed from the layout.</p>
+                    </div>
+                </div>
+                
+                <div id="table" class="example-container" style="display:none">
+                    <h2>display: table</h2>
+                    <div class="code-example">
+                        .table { display: table; }<br>
+                        .table-row { display: table-row; }<br>
+                        .table-cell { display: table-cell; }
+                    </div>
+                    <div class="explanation">
+                        <p>These values let you make elements behave like HTML table elements without actually using table markup. This can be useful for layouts that need table-like behavior.</p>
+                    </div>
+                    <div class="visual-example">
+                        <div class="table">
+                            <div class="table-row">
+                                <div class="table-cell">Cell 1</div>
+                                <div class="table-cell">Cell 2</div>
+                                <div class="table-cell">Cell 3</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">Cell 4</div>
+                                <div class="table-cell">Cell 5</div>
+                                <div class="table-cell">Cell 6</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="inline-flex" class="example-container" style="display:none">
+                    <h2>display: inline-flex</h2>
+                    <div class="code-example">
+                        selector { display: inline-flex; }
+                    </div>
+                    <div class="explanation">
+                        <p>Displays an element as an inline-level flex container. The element itself is flowed as an inline element, but its content is laid out as a flexbox.</p>
+                    </div>
+                    <div class="visual-example">
+                        <p>Text before the inline-flex container 
+                        <span style="display: inline-flex; background: #e0e7ff; padding: 5px;">
+                            <div class="element" style="margin: 2px; padding: 5px;">Item 1</div>
+                            <div class="element" style="margin: 2px; padding: 5px;">Item 2</div>
+                            <div class="element" style="margin: 2px; padding: 5px;">Item 3</div>
+                        </span> 
+                        and text after the container.</p>
+                    </div>
+                </div>
+                
+                <div id="inline-grid" class="example-container" style="display:none">
+                    <h2>display: inline-grid</h2>
+                    <div class="code-example">
+                        selector { display: inline-grid; grid-template-columns: repeat(2, 1fr); }
+                    </div>
+                    <div class="explanation">
+                        <p>Displays an element as an inline-level grid container. The element itself is flowed as an inline element, but its content is laid out as a grid.</p>
+                    </div>
+                    <div class="visual-example">
+                        <p>Text before the inline-grid container 
+                        <span style="display: inline-grid; grid-template-columns: repeat(2, 1fr); gap: 5px; background: #e0e7ff; padding: 5px;">
+                            <div class="element" style="padding: 5px;">Grid Item 1</div>
+                            <div class="element" style="padding: 5px;">Grid Item 2</div>
+                            <div class="element" style="padding: 5px;">Grid Item 3</div>
+                            <div class="element" style="padding: 5px;">Grid Item 4</div>
+                        </span> 
+                        and text after the container.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>CSS Display Properties Guide &copy; 2023</p>
+        </footer>
+    </div>
+
+    <script>
+        function showExample(displayType) {
+            // Hide all examples
+            const examples = document.querySelectorAll('.example-container');
+            examples.forEach(example => {
+                example.style.display = 'none';
+            });
+            
+            // Show selected example
+            document.getElementById(displayType).style.display = 'block';
+            
+            // Update active class in sidebar
+            const listItems = document.querySelectorAll('.display-types li');
+            listItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

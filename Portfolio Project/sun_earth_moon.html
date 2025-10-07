@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=600, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <base href="https://shanglobe.com/portfolio/"> -->
     <title>Solar System with Image Textures</title>
     <style>
         body {
@@ -22,7 +23,7 @@
                 font-size: 1.5rem;
                 text-align: center;
                 top: 10px;
-                width: 100%
+                width: 100%;
             }
         }
 
@@ -65,8 +66,8 @@
             height: 180px;
             /* Increased from 100px to 180px */
             border-radius: 50%;
-            background: url("/img/sun.gif") center/cover;
-            z-index: 200%;
+            background: url("img/sun.gif") center/cover;
+            z-index: 20;
             animation: sun-pulse 4s infinite alternate, sun-rotation 20s linear infinite;
             top: 50%;
             left: 50%;
@@ -94,7 +95,7 @@
         .earth {
             width: 40px;
             height: 40px;
-            background: url("/img/earth.png") center/cover;
+            background: url("img/earth.png") center/cover;
             z-index: 11;
             animation: earth-rotation 8s linear infinite;
         }
@@ -113,8 +114,7 @@
         .moon {
             width: 16px;
             height: 16px;
-            /* background: url("/img/moon.png") center/cover; */
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            background: url("img/moon.png") center/cover;
             z-index: 12;
             animation: moon-rotation 2.7s linear infinite;
         }
@@ -148,7 +148,7 @@
         }
 
         .info {
-            position: relative center;
+            position: relative;
             margin-top: 30px;
             color: white;
             background: rgba(0, 0, 0, 0.5);
@@ -295,13 +295,15 @@
         let moonTrail = [];
 
         // --- ANIMATION LOOP ---
+        let animationStart = performance.now();
         function animateTrails() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Time-based angles
-            const now = Date.now();
-            const earthAngle = ((now / 36500) % 1) * 2 * Math.PI; // 36.5s per orbit
-            const moonAngle = ((now / 2700) % 1) * 2 * Math.PI;   // 2.7s per orbit
+            // Time-based angles using performance.now()
+            const now = performance.now();
+            const elapsed = now - animationStart;
+            const earthAngle = ((elapsed / 36500) % 1) * 2 * Math.PI; // 36.5s per orbit
+            const moonAngle = ((elapsed / 2700) % 1) * 2 * Math.PI;   // 2.7s per orbit
 
             // Earth position
             const earthX = sunX + earthOrbitRadius * Math.cos(earthAngle - Math.PI / 2);
