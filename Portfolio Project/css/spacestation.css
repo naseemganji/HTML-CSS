@@ -15,7 +15,6 @@ body {
     color: #EAEAEA;
     line-height: 1.8;
     overflow-x: hidden;
-    z-index: -1;
 }
 
 h1,
@@ -295,10 +294,9 @@ a:hover {
     }
 }
 
-
-
-
-
+#contact .container {
+    margin-bottom: 40px;
+}
 .reservation h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
