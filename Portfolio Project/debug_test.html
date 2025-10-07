@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Test - Space Station</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+        .success { border-color: green; background-color: #e8f5e8; }
+        .error { border-color: red; background-color: #ffe8e8; }
+        img {
+            max-width: 200px;
+            height: auto;
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+        .bg-test {
+            width: 300px;
+            height: 150px;
+            border: 2px solid #333;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Space Station Debug Test</h1>
+    
+    <div class="test-section">
+        <h2>1. CSS Loading Test</h2>
+        <p>If you can see green background and borders, CSS is working.</p>
+        <div style="background-color: green; color: white; padding: 10px;">CSS is loading correctly!</div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. External CSS Test</h2>
+        <p>Testing if external CSS file loads:</p>
+        <link rel="stylesheet" href="css/spacestation.css">
+        <div class="wrap" style="position: relative; background-color: red;">
+            <p>If this div has dark background (not red), external CSS is working.</p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Image Path Test</h2>
+        <p>Testing thumbnail images:</p>
+        <img src="img/thumbnail/thumbnail1.jpeg" alt="Test 1" onerror="this.style.border='3px solid red'; this.alt='FAILED: thumbnail1.jpeg'">
+        <img src="img/thumbnail/thumbnail2.jpeg" alt="Test 2" onerror="this.style.border='3px solid red'; this.alt='FAILED: thumbnail2.jpeg'">
+        <img src="img/thumbnail/thumbnail3.jpeg" alt="Test 3" onerror="this.style.border='3px solid red'; this.alt='FAILED: thumbnail3.jpeg'">
+    </div>
+
+    <div class="test-section">
+        <h2>4. Background Image Test</h2>
+        <p>Testing CSS background image:</p>
+        <div class="bg-test" style="background: url('img/thumbnail/planets.jpg') no-repeat center/cover;">
+            <p style="color: white; text-shadow: 2px 2px 4px black; padding: 20px;">
+                If you see a planet image behind this text, background images work.
+            </p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>5. File Structure Check</h2>
+        <p>Expected structure:</p>
+        <ul>
+            <li>debug_test.html (this file)</li>
+            <li>css/spacestation.css</li>
+            <li>img/thumbnail/planets.jpg</li>
+            <li>img/thumbnail/thumbnail1.jpeg to thumbnail9.jpeg</li>
+        </ul>
+    </div>
+
+    <script>
+        // JavaScript debugging
+        console.log("Debug test page loaded");
+        
+        // Check if CSS file exists
+        fetch('css/spacestation.css')
+            .then(response => {
+                if (response.ok) {
+                    console.log("✅ CSS file found and accessible");
+                } else {
+                    console.error("❌ CSS file not accessible:", response.status);
+                }
+            })
+            .catch(error => {
+                console.error("❌ Error loading CSS file:", error);
+            });
+
+        // Check if an image exists
+        fetch('img/thumbnail/planets.jpg')
+            .then(response => {
+                if (response.ok) {
+                    console.log("✅ Background image found and accessible");
+                } else {
+                    console.error("❌ Background image not accessible:", response.status);
+                }
+            })
+            .catch(error => {
+                console.error("❌ Error loading background image:", error);
+            });
+
+        // Image loading error handler
+        window.addEventListener('load', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach((img, index) => {
+                img.onload = function() {
+                    console.log(`✅ Image ${index + 1} loaded successfully: ${this.src}`);
+                };
+                img.onerror = function() {
+                    console.error(`❌ Image ${index + 1} failed to load: ${this.src}`);
+                };
+            });
+        });
+    </script>
+</body>
+</html>
