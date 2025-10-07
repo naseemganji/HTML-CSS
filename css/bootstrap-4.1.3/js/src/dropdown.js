@@ -421,7 +421,7 @@ const Dropdown = (($) => {
       const parent   = Dropdown._getParentFromElement(this)
       const isActive = $(parent).hasClass(ClassName.SHOW)
 
-      if (!isActive && (event.which !== ESCAPE_KEYCODE || event.which !== SPACE_KEYCODE) ||
+      if (!isActive && (event.which !== ESCAPE_KEYCODE && event.which !== SPACE_KEYCODE) ||
            isActive && (event.which === ESCAPE_KEYCODE || event.which === SPACE_KEYCODE)) {
         if (event.which === ESCAPE_KEYCODE) {
           const toggle = parent.querySelector(Selector.DATA_TOGGLE)
