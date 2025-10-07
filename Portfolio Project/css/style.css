@@ -1,0 +1,357 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* Starry Background */
+/* Hide all sections by default */
+section#home, 
+section#about,
+section#services,
+section#contact {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Show only the targeted section with a fade-in effect */
+section#home:target,
+section#about:target, 
+section#services:target,
+section#contact:target {
+    display: block;
+    opacity: 1;
+}
+
+/* Make home section visible by default when no hash is present */
+section#home {
+    display: block;
+    opacity: 1;
+}
+
+/* Hide home when another section is targeted */
+section:target ~ section#home {
+    display: none;
+    opacity: 0;
+}
+
+/* Style active navigation links */
+.navbar-nav .nav-item .nav-link:focus,
+.navbar-nav .nav-item .nav-link.active {
+    color: #17a2b8 !important;
+    font-weight: bold;
+}
+body {
+    /* Set a consistent dark background for the entire page */
+    background: #000000; /* Pure black background */
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    min-height: 100vh;
+    width: 100%;
+}
+
+body.starry-bg {
+    /* Make sure this matches the dark background from your stars.css */
+    background: radial-gradient(ellipse at center, #0a0e2a 0%, #000000 70%);
+    background-attachment: fixed; /* Important! This keeps the gradient fixed while scrolling */
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* Use viewport height to cover the screen */
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--duration) ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+
+/* End -  Starry Background */
+
+.wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    z-index: 1;
+}
+
+        .navbar {
+            background: rgba(0, 4, 40, 0.8) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .navbar-nav {
+            margin: 0 auto;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            margin: 0 15px;
+            transition: all 0.3s;
+        }
+        .nav-item {
+            font-size: 20px;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .dropdown-menu {
+            background: rgba(0, 4, 40, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dropdown-item {
+            color: rgba(255, 255, 255, 0.9) !important;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white !important;
+        }
+        
+        /* Header styling */
+        header {
+            text-align: center;
+            padding: 100px 20px 50px;
+            color: white;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .site-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(201, 209, 127, 0.5);
+        }
+        
+        .site-description {
+            font-size: 1.5rem;
+            color: rgba(113, 120, 120, 0.8);
+        }
+        
+        /* Content area */
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 50px 20px;
+            min-height: 60vh;
+        }
+        .card.bg-transparent {
+    background: rgba(0, 4, 40, 0.6) !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+}
+
+.card.bg-transparent:hover {
+    background: rgba(0, 4, 40, 0.8) !important;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+}
+
+/* Contact Form */
+.contact-form {
+    padding: 30px;
+    background: rgba(0, 4, 40, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-form .form-control {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.contact-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.contact-form .btn-primary {
+    background: rgba(0, 123, 255, 0.8);
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.contact-form .btn-primary:hover {
+    background: rgba(0, 123, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Section spacing */
+section {
+    scroll-margin-top: 80px;
+}
+.service-subsection {
+    background: rgba(0, 4, 40, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+}
+
+.service-subsection:hover {
+    background: rgba(0, 4, 40, 0.8);
+    border-color: rgba(0, 123, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
+}
+
+.service-subsection h3 {
+    border-bottom: 2px solid rgba(0, 123, 255, 0.5);
+    padding-bottom: 10px;
+}
+
+.service-subsection h5 {
+    color: rgba(0, 123, 255, 0.9);
+    margin-top: 10px;
+}
+
+.service-subsection ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.service-subsection ul li {
+    padding: 5px 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.service-subsection ul li:before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: rgba(0, 123, 255, 0.8);
+}
+
+/* Contact Form */
+.contact-form {
+    padding: 30px;
+    background: rgba(0, 4, 40, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-form .form-control {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.contact-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.contact-form .btn-primary {
+    background: rgba(0, 123, 255, 0.8);
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.contact-form .btn-primary:hover {
+    background: rgba(0, 123, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Section spacing */
+section {
+    scroll-margin-top: 80px;
+}
+.content,
+header,
+nav,
+section {
+    position: relative;
+    z-index: 1;
+}
+
+.main-container {
+    position: relative;
+    z-index: 1; /* Above the stars background */
+    min-height: 100vh; /* At minimum, as tall as the viewport */
+    width: 100%;
+}
+/* Icon spacing */
+.me-1 {
+    margin-right: 0.25rem;
+}
+
+.me-2 {
+    margin-right: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+/* Social icons in footer */
+.social-links a {
+    display: inline-block;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+    color: #17a2b8 !important; /* Use your preferred highlight color */
+}
