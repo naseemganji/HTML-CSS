@@ -94,7 +94,7 @@ a:hover {
 
 /* Home Section - Fixed CSS */
 #home {
-    background: url(../img/thumbnail/planets.jpg) no-repeat 50% 50%;
+    background: url(../img/Thumbnail/planets.jpg) no-repeat 50% 50%;
     background-attachment: fixed;
     z-index: 2;
     position: relative;
