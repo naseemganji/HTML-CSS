@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <base href="https://shanglobe.com/portfolio/"> -->
+    <title>Solar System with Image Textures</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at center, #0a0e2a 0%, #000000 70%);
+            /* overflow: hidden; */
+            font-family: 'Arial', sans-serif;
+
+            h1 {
+                position: absolute;
+                margin-bottom: 10px;
+                color: #ffd700;
+                font-size: 1.5rem;
+                text-align: center;
+                top: 10px;
+                width: 100%;
+            }
+        }
+
+        h3 a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        h3 a:hover {
+            background-color: antiquewhite;
+            color: black;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .solar-system {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sun {
+            position: absolute;
+            width: 180px;
+            /* Increased from 100px to 180px */
+            height: 180px;
+            /* Increased from 100px to 180px */
+            border-radius: 50%;
+            background: url("img/sun.gif") center/cover;
+            z-index: 20;
+            animation: sun-pulse 4s infinite alternate, sun-rotation 20s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .sun::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .earth,
+        .moon {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .earth {
+            width: 40px;
+            height: 40px;
+            background: url("img/earth.png") center/cover;
+            z-index: 11;
+            animation: earth-rotation 8s linear infinite;
+        }
+
+        .earth::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .moon {
+            width: 16px;
+            height: 16px;
+            background: url("img/moon.png") center/cover;
+            z-index: 12;
+            animation: moon-rotation 2.7s linear infinite;
+        }
+
+        .moon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, #e6e6e6, #8c8c8c);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 5s infinite alternate;
+        }
+
+        .info {
+            position: relative;
+            margin-top: 30px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info p {
+            margin: 8px 0;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        @keyframes earth-rotation {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes moon-rotation {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes sun-rotation {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* @keyframes sun-pulse {
+            0% {
+                box-shadow: 0 0 60px 60px rgba(255, 215, 0, 0.8),
+                            0 0 100px 100px rgba(251, 197, 36, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 100px 100px rgba(255, 215, 0, 0.9),
+                            0 0 200px 200px rgba(251, 197, 36, 0.7);
+            }
+            100% {
+                box-shadow: 0 0 200px 200px rgba(255, 215, 0, 0.9),
+                            0 0 300px 300px rgba(251, 197, 36, 0.7);
+            
+                        }
+        } */
+        @keyframes twinkle {
+            0% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Solar System Animation</h1>
+    <div class="container">
+        <div class="solar-system">
+            <div class="sun"></div>
+            <div class="earth"></div>
+            <div class="moon"></div>
+            <div class="stars" id="stars"></div>
+        </div>
+        <div class="info">
+
+            <p>Watch the Earth orbit around the Sun while the Moon orbits around the Earth.</p>
+            <p>Earth's orbit: 36.5 seconds (represents 365 days)</p>
+            <p>Moon's orbit: 2.7 seconds (represents 27 days)</p>
+            <h3><a href="index.html">Back to Home</a></h3>
+        </div>
+    </div>
+    <script>
+        // Add stars to the background
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = `${Math.random() * 3}px`;
+            star.style.height = star.style.width;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            starsContainer.appendChild(star);
+        }
+        // Fallback for missing images
+        document.querySelectorAll('.sun, .earth, .moon').forEach(element => {
+            const img = new Image();
+            img.onerror = function () {
+                element.style.backgroundImage = 'none';
+            };
+            const bgImage = window.getComputedStyle(element).backgroundImage;
+            const urlMatch = bgImage.match(/url\(["']?([^"']*)["']?\)/);
+            if (urlMatch) {
+                img.src = urlMatch[1];
+            }
+        });
+
+        // --- CONFIG ---
+        const earthOrbitRadius = 225; // px (half of orbit)
+        const moonOrbitRadius = 40;   // px (half of moon orbit)
+        const sunX = 300, sunY = 300; // center of .solar-system (600x600)
+        const earthTrailLength = 100;  // longer trail for Earth
+        const moonTrailLength = 15;    // keep Moon's trail short
+
+        // --- CANVAS SETUP ---
+        const solarSystem = document.querySelector('.solar-system');
+        const canvas = document.createElement('canvas');
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.position = 'absolute';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = 5;
+        solarSystem.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+
+        // --- DOM ELEMENTS ---
+        const earthDiv = document.querySelector('.earth');
+        const moonDiv = document.querySelector('.moon');
+
+        // --- TRAIL DATA ---
+        let earthTrail = [];
+        let moonTrail = [];
+
+        // --- ANIMATION LOOP ---
+        let animationStart = performance.now();
+        function animateTrails() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Time-based angles using performance.now()
+            const now = performance.now();
+            const elapsed = now - animationStart;
+            const earthAngle = ((elapsed / 36500) % 1) * 2 * Math.PI; // 36.5s per orbit
+            const moonAngle = ((elapsed / 2700) % 1) * 2 * Math.PI;   // 2.7s per orbit
+
+            // Earth position
+            const earthX = sunX + earthOrbitRadius * Math.cos(earthAngle - Math.PI / 2);
+            const earthY = sunY + earthOrbitRadius * Math.sin(earthAngle - Math.PI / 2);
+
+            // Moon position (relative to Earth)
+            const moonX = earthX + moonOrbitRadius * Math.cos(moonAngle - Math.PI / 2);
+            const moonY = earthY + moonOrbitRadius * Math.sin(moonAngle - Math.PI / 2);
+
+            // --- Move Earth and Moon DOM elements ---
+            earthDiv.style.left = (earthX - 20) + 'px'; // 20 = half earth size
+            earthDiv.style.top = (earthY - 20) + 'px';
+            moonDiv.style.left = (moonX - 8) + 'px';    // 8 = half moon size
+            moonDiv.style.top = (moonY - 8) + 'px';
+
+            // Update trails
+            earthTrail.push({ x: earthX, y: earthY });
+            moonTrail.push({ x: moonX, y: moonY });
+            if (earthTrail.length > earthTrailLength) earthTrail.shift();
+            if (moonTrail.length > moonTrailLength) moonTrail.shift();
+
+            // Draw Earth trail (longer, fading, always behind Earth)
+            for (let i = 1; i < earthTrail.length; i++) {
+                ctx.strokeStyle = `rgba(255,255,255,${i / earthTrail.length * 0.7})`; // slightly less opacity for longer trail
+                ctx.lineWidth = 6;
+                ctx.beginPath();
+                ctx.moveTo(earthTrail[i - 1].x, earthTrail[i - 1].y);
+                ctx.lineTo(earthTrail[i].x, earthTrail[i].y);
+                ctx.stroke();
+            }
+
+            // Draw Moon trail (short, fading, always behind Moon)
+            for (let i = 1; i < moonTrail.length; i++) {
+                ctx.strokeStyle = `rgba(255,255,255,${i / moonTrail.length * 1.0})`; // white, fully opaque at end
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(moonTrail[i - 1].x, moonTrail[i - 1].y);
+                ctx.lineTo(moonTrail[i].x, moonTrail[i].y);
+                ctx.stroke();
+            }
+
+            requestAnimationFrame(animateTrails);
+        }
+        animateTrails();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+body {
+  background-color: #91e791;
+}
+
+h1 {
+  color: #088da5;
+  margin-left: 200px;
+  text-shadow: 1px 1.5px 4px rgba(0, 0, 0, 0.6);
+}
+
+.container {
+  margin-left: 100px;
+  width: 480px;
+  height: 480px;
+  background-color: #faebd7;
+  border: 2px solid black;
+  border-radius: 5% 0 5% 0%
+}
+
+/*
+  SELECT ALL SQUARES IN THE ARRAY
+*/
+.container .squares:nth-child(-n+4) {
+  background-image: url(../img/icons.png);
+  /* background-color: aquamarine;
+  color: #ff0000; */
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 10%;
+  cursor: pointer;
+  margin-left: 10px;
+  position: relative;
+
+  /* Background positioning */
+  background-position: center 55px;
+  background-repeat: no-repeat;
+  background-size: 90px 90px;
+  box-sizing: border-box;
+}
+
+
+.container .squares:nth-child(-n+4):hover {
+  background-image: url("../img/icons2.png");
+  background-color: #d0d286;
+  transform: scale(1.1);
+  animation-name: any-name;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+  p {
+    text-shadow: #fdfd38 1px 1px 4px;
+    color: #080808;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+  }
+}
+
+.container .squares:nth-child(1) {
+  background-color: #5b0612;
+  animation-direction: alternate;
+}
+
+.container .squares:nth-child(2) {
+  background-color: #190cd0;
+}
+
+.container .squares:nth-child(3) {
+  background-color: #034803;
+}
+
+.container .squares:nth-child(4) {
+  background-color: #636405;
+}
+
+.container .squares:nth-child(-n+4) {
+  /* Other styles remain the same */
+  padding-bottom: 0px;
+  /* Adds space at the bottom */
+  background-position: center bottom;
+  box-sizing: border-box;
+  /* Ensures padding doesn't affect dimensions */
+}
+
+.container .squares p {
+  text-shadow: #fdfd38 1px 1px 4px;
+  color: #faebd7;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0;
+}
+
+@keyframes any-name {
+
+  0%,
+  100% {
+    transform: translateY(0%);
+  }
+
+  50% {
+    transform: translateY(350%);
+    background-image: url("../img/icons.png");
+  }
+
+}
