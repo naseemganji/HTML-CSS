@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> One-Page Website</title>
+    <link rel="icon" href="./images/ico1.png" type="image/x-icon">
+    <link rel="stylesheet" href="one_page_website_CSS/one_page_website.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header style="background-color: #DAA520; text-align: center; padding: 20px;">
+        <h1>Welcome to My One-Page Website</h1>
+        <nav id="main-navigation">
+            <a class="con-images" href="#image-section">Images </a> |
+            <a class="con-images" href="#video-section">Videos</a> |
+            <a class="con-images" href="#contactus">Contact Us</a>
+        </nav>
+    </header>
+
+    <section id="image-section">
+        <h2>Images</h2>
+        <p>This is the image section of the one-page website. Click on any image to view it in full size.</p>
+        <div class="image-container">
+            <div class="image">
+                <img src="./images/img1.jpeg" alt="Image 1" onclick="openModal();currentSlide(1)">
+            </div>
+            <div class="image">
+                <img src="./images/img2.jpeg" alt="Image 2" onclick="openModal();currentSlide(2)">
+            </div>
+            <div class="image">
+                <img src="./images/img3.jpeg" alt="Image 3" onclick="openModal();currentSlide(3)">
+            </div>
+            <div class="image">
+                <img src="./images/img4.jpeg" alt="Image 4" onclick="openModal();currentSlide(4)">
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            
+            <!-- Full-size images -->
+            <div class="mySlides">
+                <div class="numbertext">1 / 4</div>
+                <img src="./images/img1.jpeg" style="width:100%">
+            </div>
+            
+            <div class="mySlides">
+                <div class="numbertext">2 / 4</div>
+                <img src="./images/img2.jpeg" style="width:100%">
+            </div>
+            
+            <div class="mySlides">
+                <div class="numbertext">3 / 4</div>
+                <img src="./images/img3.jpeg" style="width:100%">
+            </div>
+            
+            <div class="mySlides">
+                <div class="numbertext">4 / 4</div>
+                <img src="./images/img4.jpeg" style="width:100%">
+            </div>
+            
+            <!-- Next/Previous controls -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            
+            <!-- Caption text -->
+            <div class="caption-container">
+                <p id="caption"></p>
+            </div>
+            
+            <!-- Thumbnail images -->
+            <div class="column">
+                <img class="demo" src="./images/img1.jpeg" style="width:100%" onclick="currentSlide(1)" alt="Beautiful Landscape">
+            </div>
+            <div class="column">
+                <img class="demo" src="./images/img2.jpeg" style="width:100%" onclick="currentSlide(2)" alt="City View">
+            </div>
+            <div class="column">
+                <img class="demo" src="./images/img3.jpeg" style="width:100%" onclick="currentSlide(3)" alt="Nature Scene">
+            </div>
+            <div class="column">
+                <img class="demo" src="./images/img4.jpeg" style="width:100%" onclick="currentSlide(4)" alt="Mountain View">
+            </div>
+        </div>
+    </div>
+
+    <section id="video-section">
+        <h2>Videos</h2>
+        <p>This is the video section of the one-page website.</p>
+        <iframe src="https://www.youtube.com/embed/qz0aGYrrlhU?list=PLJzIXbSTwYIJeutN5H8Y5audWZCYg0xL5" title="HTML Tutorial for Beginners by Mosh" width="607" height="373" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </section>
+
+    <section id="contactus">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out!</p>
+        <form action="https://formspree.io/f/mkgqllww" method="POST" id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>            
+            <input type="email" name="email" placeholder="Your Email" required>            
+            <input type="text" name="subject" placeholder="Subject" required>            
+            <textarea name="message" placeholder="Your Message" required></textarea>                  
+            <button type="submit">Send Message</button>
+        </form> 
+        <br><br>
+    </section>
+
+    <footer style="background-color: #DAA520; text-align: center; padding: 10px;">
+        <a href="#top">Back to Top</a>
+        <p>&copy; 2024 Muhamad Naseem Ganji: One-Page Website</p>
+    </footer>
+
+    <!-- Link to JavaScript -->
+    <script src="one_page_website_JS/one_page_website.js"></script>
+</body>
+</html>
